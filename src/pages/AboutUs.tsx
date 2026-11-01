@@ -1,5 +1,5 @@
-import React from 'react';
 import { ShieldCheck, Heart, Building2, Users, Clock, CheckCircle2, Phone, MapPin, Mail } from 'lucide-react';
+import { ImageWithFallback } from '../components/common/ImageWithFallback.tsx';
 
 interface AboutUsProps {
   onNavigate: (tab: string) => void;
@@ -74,11 +74,11 @@ export const AboutUs: React.FC<AboutUsProps> = ({ onNavigate, onOpenBooking }) =
           </div>
 
           <div className="lg:col-span-5 rounded-2xl overflow-hidden border border-slate-200 aspect-16/9 bg-slate-100">
-            <img
-              src="/src/assets/images/clinic_facility_suite_1793521615630.jpg"
+            <ImageWithFallback
+              src="/images/clinic_facility_suite.jpg"
               alt="MediCare Plus Clinical Suites"
+              fallbackType="facility"
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
         </div>

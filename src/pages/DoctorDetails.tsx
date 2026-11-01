@@ -13,6 +13,7 @@ import {
   Shield,
   Star,
 } from 'lucide-react';
+import { ImageWithFallback } from '../components/common/ImageWithFallback.tsx';
 
 interface DoctorDetailsProps {
   doctorId: string;
@@ -109,19 +110,13 @@ export const DoctorDetails: React.FC<DoctorDetailsProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           {/* Doctor Portrait */}
           <div className="md:col-span-4 aspect-square rounded-2xl overflow-hidden bg-slate-100 border border-slate-200 relative">
-            {doctor.photoUrl ? (
-              <img
-                src={doctor.photoUrl}
-                alt={doctor.name}
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center bg-blue-50 text-[#124E78]">
-                <Stethoscope className="w-16 h-16 text-teal-600 mb-2" />
-                <span className="text-xs font-semibold">{doctor.specialization}</span>
-              </div>
-            )}
+            <ImageWithFallback
+              src={doctor.photoUrl}
+              alt={doctor.name}
+              fallbackType="doctor"
+              doctorSpecialty={doctor.specialization}
+              className="w-full h-full object-cover"
+            />
             <div className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs px-3 py-1 rounded-md text-xs font-bold text-[#124E78] shadow-xs tabular-nums">
               ${doctor.consultationFee} Consultation
             </div>

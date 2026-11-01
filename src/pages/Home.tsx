@@ -20,6 +20,7 @@ import {
   MapPin,
   Phone,
 } from 'lucide-react';
+import { ImageWithFallback } from '../components/common/ImageWithFallback.tsx';
 
 interface HomeProps {
   onOpenBooking: (doctorId?: string) => void;
@@ -164,14 +165,14 @@ export const Home: React.FC<HomeProps> = ({
             {/* Right Column: Hero Visual Asset */}
             <div className="lg:col-span-5 relative">
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-16/9 lg:aspect-4/3 bg-slate-100">
-                <img
-                  src="/src/assets/images/medicare_hero_clinic_1793521613481.jpg"
+                <ImageWithFallback
+                  src="/images/medicare_hero_clinic.jpg"
                   alt="MediCare Plus Modern Healthcare Clinic Reception"
+                  fallbackType="facility"
                   className="w-full h-full object-cover"
-                  referrerPolicy="no-referrer"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 right-4 text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-4 left-4 right-4 text-white pointer-events-none">
                   <p className="text-xs font-bold uppercase tracking-wider text-teal-300">Metro Health District</p>
                   <p className="text-sm font-semibold text-white">State-of-the-Art Outpatient Facility</p>
                 </div>
@@ -290,18 +291,13 @@ export const Home: React.FC<HomeProps> = ({
               className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:border-teal-500 transition-all flex flex-col"
             >
               <div className="aspect-4/3 bg-slate-100 overflow-hidden relative">
-                {doc.photoUrl ? (
-                  <img
-                    src={doc.photoUrl}
-                    alt={doc.name}
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-blue-50 text-[#124E78]">
-                    <Stethoscope className="w-12 h-12" />
-                  </div>
-                )}
+                <ImageWithFallback
+                  src={doc.photoUrl}
+                  alt={doc.name}
+                  fallbackType="doctor"
+                  doctorSpecialty={doc.specialization}
+                  className="w-full h-full object-cover"
+                />
                 <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-xs px-2.5 py-1 rounded-md text-xs font-bold text-[#124E78] shadow-xs tabular-nums">
                   ${doc.consultationFee}
                 </div>
@@ -422,11 +418,11 @@ export const Home: React.FC<HomeProps> = ({
 
           <div className="lg:col-span-5">
             <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-md aspect-16/9 bg-slate-100">
-              <img
-                src="/src/assets/images/clinic_facility_suite_1793521615630.jpg"
+              <ImageWithFallback
+                src="/images/clinic_facility_suite.jpg"
                 alt="Clinic Diagnostic and Consultation Suite"
+                fallbackType="facility"
                 className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
               />
             </div>
           </div>

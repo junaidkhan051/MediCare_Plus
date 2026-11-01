@@ -15,6 +15,7 @@ import {
   ChevronRight,
   Shield,
 } from 'lucide-react';
+import { ImageWithFallback } from '../components/common/ImageWithFallback.tsx';
 
 interface ServicesProps {
   onOpenBooking: (doctorId?: string) => void;
@@ -133,17 +134,13 @@ export const Services: React.FC<ServicesProps> = ({
                         className="p-3 rounded-xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3 hover:bg-white hover:border-teal-400 transition-all"
                       >
                         <div className="flex items-center gap-2.5 min-w-0">
-                          <div className="w-9 h-9 rounded-lg bg-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
-                            {doc.photoUrl ? (
-                              <img
-                                src={doc.photoUrl}
-                                alt={doc.name}
-                                className="w-full h-full object-cover"
-                                referrerPolicy="no-referrer"
-                              />
-                            ) : (
-                              <Stethoscope className="w-4 h-4 text-teal-600" />
-                            )}
+                          <div className="w-9 h-9 rounded-lg bg-slate-100 overflow-hidden shrink-0 flex items-center justify-center border border-slate-200">
+                            <ImageWithFallback
+                              src={doc.photoUrl}
+                              alt={doc.name}
+                              fallbackType="doctor"
+                              className="w-full h-full object-cover"
+                            />
                           </div>
                           <div className="min-w-0">
                             <p className="text-xs font-bold text-slate-900 truncate">{doc.name}</p>

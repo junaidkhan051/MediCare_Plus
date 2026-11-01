@@ -18,6 +18,7 @@ import {
   MapPin,
   FileText,
 } from 'lucide-react';
+import { ImageWithFallback } from './common/ImageWithFallback.tsx';
 
 interface BookingModalProps {
   isOpen: boolean;
@@ -294,16 +295,13 @@ export const BookingModal: React.FC<BookingModalProps> = ({
                     className="p-3 border border-slate-200 rounded-xl hover:border-teal-500 hover:shadow-xs cursor-pointer transition-all flex items-center gap-3 bg-white"
                   >
                     <div className="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 border border-slate-200 flex items-center justify-center">
-                      {doc.photoUrl ? (
-                        <img
-                          src={doc.photoUrl}
-                          alt={doc.name}
-                          className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
-                        />
-                      ) : (
-                        <Stethoscope className="w-6 h-6 text-teal-600" />
-                      )}
+                      <ImageWithFallback
+                        src={doc.photoUrl}
+                        alt={doc.name}
+                        fallbackType="doctor"
+                        doctorSpecialty={doc.specialization}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-xs font-bold text-slate-900 truncate">{doc.name}</p>

@@ -13,6 +13,7 @@ import {
   Star,
   RotateCcw,
 } from 'lucide-react';
+import { ImageWithFallback } from '../components/common/ImageWithFallback.tsx';
 
 interface FindDoctorsProps {
   onSelectDoctor: (doctorId: string) => void;
@@ -206,19 +207,13 @@ export const FindDoctors: React.FC<FindDoctorsProps> = ({
               <div>
                 {/* Photo Header */}
                 <div className="aspect-square bg-slate-100 overflow-hidden relative border-b border-slate-100">
-                  {doc.photoUrl ? (
-                    <img
-                      src={doc.photoUrl}
-                      alt={doc.name}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-blue-50 to-teal-50 text-[#124E78]">
-                      <Stethoscope className="w-12 h-12 text-teal-600 mb-1" />
-                      <span className="text-[11px] font-semibold text-slate-500">{doc.specialization}</span>
-                    </div>
-                  )}
+                  <ImageWithFallback
+                    src={doc.photoUrl}
+                    alt={doc.name}
+                    fallbackType="doctor"
+                    doctorSpecialty={doc.specialization}
+                    className="w-full h-full object-cover"
+                  />
                   <div className="absolute top-2.5 right-2.5 bg-white/90 backdrop-blur-xs px-2 py-0.5 rounded text-[11px] font-bold text-[#124E78] shadow-xs tabular-nums">
                     ${doc.consultationFee}
                   </div>
