@@ -1,0 +1,6 @@
+{
+  "name": "MediCare Plus - Doctor Appointment Booking & Clinic Management",
+  "description": "Professional healthcare SaaS platform for doctor appointment booking, clinic scheduling, and multi-role medical practice management.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
